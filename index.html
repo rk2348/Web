@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome拡張機能 インストールガイド</title>
+    <style>
+        /* デザインの基本設定 */
+        :root {
+            --primary-color: #4285f4;
+            --bg-color: #f0f2f5;
+            --text-color: #333;
+        }
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 記事全体のレイアウト */
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        article {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        /* ヘッダー */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        h1 {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .lead {
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* ダウンロードボタン */
+        .download-section {
+            text-align: center;
+            background: #f8f9ff;
+            border: 2px dashed #c2d7ff;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        .btn-download {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.4);
+            transition: all 0.3s;
+        }
+        .btn-download:hover {
+            transform: translateY(-3px);
+            background: #357ae8;
+            box-shadow: 0 8px 20px rgba(66, 133, 244, 0.5);
+        }
+
+        /* 手順のカード形式 */
+        .step-card {
+            margin-bottom: 80px;
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        h2 {
+            font-size: 24px;
+            margin: 0;
+            color: #222;
+        }
+
+        /* 画像コンテナの設定 */
+        .image-container {
+            width: 100%;
+            background: #f1f3f4;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block; /* 画像があるときは表示 */
+        }
+
+        code {
+            background: #eee;
+            padding: 3px 7px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-family: monospace;
+        }
+        .caution {
+            color: #d93025;
+            font-weight: bold;
+            background: #fce8e6;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <article>
+        <header>
+            <h1>Chrome拡張機能 インストールガイド</h1>
+            <p class="lead">このページでは、独自のChrome拡張機能を安全に導入する手順を写真付きで解説します。</p>
+        </header>
+
+        <section class="download-section">
+            <p style="margin-bottom: 20px; font-weight: bold;">まずは最新版の拡張ファイルをダウンロードしましょう</p>
+            <a href="MyExtension.zip" class="btn-download" download>
+                拡張機能をダウンロード (.zip)
+            </a>
+            <p style="font-size: 13px; color: #888; margin-top: 15px;">※保存先は「ダウンロード」フォルダになります</p>
+        </section>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <h2>ZIPファイルを解凍する</h2>
+            </div>
+            <p>ダウンロードした <code>MyExtension.zip</code> を右クリックして、<b>「すべて展開」</b>を選択し、ファイルを解凍します。</p>
+            
+            <div class="image-container">
+                <img src="images/step1.png" alt="ZIPファイルを解凍する手順">
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <h2>Chromeの管理画面を開く</h2>
+            </div>
+            <p>ブラウザのアドレスバーに <code>chrome://extensions/</code> と入力して <code>Enter</code> を押します。</p>
+            
+            <div class="image-container">
+                <img src="images/step2.png" alt="拡張機能管理画面を開く手順">
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <h2>デベロッパーモードをONにする</h2>
+            </div>
+            <p>画面の右上にある<b>「デベロッパー モード」</b>のスイッチをクリックしてONにします。</p>
+            <p class="caution">※これがOFFのままだと、自作ツールを読み込むことができません。</p>
+            
+            <div class="image-container">
+                <img src="images/step3.png" alt="デベロッパーモードを有効にする">
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <h2>フォルダを選択して読み込む</h2>
+            </div>
+            <p>左上に表示された<b>「展開済み形式の拡張機能を読み込む」</b>ボタンをクリックし、手順1で解凍してできた「フォルダ」を選択してください。</p>
+            
+            <div class="image-container">
+                <img src="images/step4.png" alt="フォルダを選択して読み込む手順">
+            </div>
+        </div>
+
+        <footer style="text-align: center; border-top: 2px solid #f0f0f0; padding-top: 40px; margin-top: 60px;">
+            <p style="font-weight: bold; color: #555;">これで導入は完了です！</p>
+            <p style="color: #888; font-size: 14px;">ブラウザ右上のパズルアイコンをクリックすると、インストールした拡張機能が表示されます。</p>
+        </footer>
+    </article>
+</div>
+
+</body>
+</html>
